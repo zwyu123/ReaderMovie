@@ -43,7 +43,7 @@ var local_database = [
     reading: 102,
     collection: 26,
     date: "Nov 20 2016",
-    avatar: "../../../images/avatar/3.png",
+    avatar: "/images/avatar/3.png",
   },
 ]
 
