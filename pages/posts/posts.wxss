@@ -10,14 +10,18 @@ swiper image {
   height: 600rpx;
 }
 
-.post-container {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20rpx;
-  margin-bottom: 40rpx;
-  background-color: #fff;
-  border-top: 1px solid #ededed;
-  border-bottom: 1px solid #ededed;
-  padding-bottom: 10rpx;
+.date {
+  font-size: 24rpx;
+  margin-left: 30rpx;
+  vertical-align: middle;
+  color: #999;
 }
 
+.title {
+  margin-left: 40rpx;
+  font-size: 36rpx;
+  font-weight: 700;
+  margin-top: 30rpx;
+  letter-spacing: 2px;
+  color: #4b556c;
+}
