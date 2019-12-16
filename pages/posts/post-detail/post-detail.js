@@ -11,7 +11,7 @@ Page({
       postData: postData
     })
 
-    var postsCollected = wx.getStorageSync('posts_Collected')
+    var postsCollected = wx.getStorageSync('posts_collected')
     if(postsCollected) {
       var postCollected = postsCollected[postId]
       if(postCollected) {
@@ -23,7 +23,7 @@ Page({
     else {
       var postsCollected = {};
       postsCollected[postId] = false
-      wx.setStorageSync('posts_Collected', postsCollected);
+      wx.setStorageSync('posts_collected', postsCollected);
     }
   },
 
@@ -38,6 +38,12 @@ Page({
     // 更新数据绑定变量，从而实现切换图片
     this.setData({
       collected: postCollected
+    })
+
+    wx.showToast({
+      title: postCollected?"收藏成功":"取消成功",
+      duration: 1000,
+      icon: "success"
     })
   }
 })
