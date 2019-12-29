@@ -1,7 +1,7 @@
 var postsData = require('../../../data/posts-data.js')
 Page({
   data: {
-
+    isPlayingMusic: false
   },
   onLoad: function(option) {
     var postId = option.id;
@@ -12,15 +12,14 @@ Page({
     })
 
     var postsCollected = wx.getStorageSync('posts_collected')
-    if(postsCollected) {
+    if (postsCollected) {
       var postCollected = postsCollected[postId]
-      if(postCollected) {
+      if (postCollected) {
         this.setData({
           collected: postCollected
         })
       }
-    }
-    else {
+    } else {
       var postsCollected = {};
       postsCollected[postId] = false
       wx.setStorageSync('posts_collected', postsCollected);
@@ -41,7 +40,7 @@ Page({
     })
 
     wx.showToast({
-      title: postCollected?"收藏成功":"取消成功",
+      title: postCollected ? "收藏成功" : "取消成功",
       duration: 1000,
       icon: "success"
     })
@@ -56,7 +55,7 @@ Page({
     ]
     wx.showActionSheet({
       itemList: itemList,
-      itemColor:"#405f80",
+      itemColor: "#405f80",
       success: function(res) {
         wx.showModal({
           title: "用户" + itemList[res.tapIndex],
@@ -64,5 +63,29 @@ Page({
         })
       }
     })
+  },
+
+  onMusicTap: function(event) {
+    var currentPostId = this.data.currentPostId;
+    var postData = postsData.postList[currentPostId];
+    var isPlayingMusic = this.data.isPlayingMusic;
+    if (isPlayingMusic) {
+      wx.pauseBackgroundAudio();
+      this.setData({
+        isPlayingMusic: false
+      })
+    } else {
+      wx.playBackgroundAudio({
+        dataUrl: postData.music.url,
+        title: postData.music.title,
+        coverImgUrl: postData.music.coverImgUrl,
+      })
+      this.setData({
+        isPlayingMusic: true
+      })
+    }
+
+
+
   }
 })
